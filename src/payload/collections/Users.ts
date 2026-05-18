@@ -14,6 +14,7 @@ const Users: CollectionConfig = {
   slug: 'users',
   auth: {
     tokenExpiration: 28800, // 8 hours
+    useAPIKey: false,
   },
   fields: [
     {

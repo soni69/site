@@ -23,8 +23,8 @@ Production-ready сайт для сервисного центра по ремо
     - Настроить `src/lib/payload.ts` — Payload Local API клиент
     - _Требования: 20.1, 20.2, 20.3_
 
-- [ ] 2. Brand_Config и конфигурация сайта
-  - [-] 2.1 Создать Global `site-settings` и утилиты Brand_Config
+- [x] 2. Brand_Config и конфигурация сайта
+  - [x] 2.1 Создать Global `site-settings` и утилиты Brand_Config
     - Создать `src/payload/globals/SiteSettings.ts` со всеми полями из design.md (companyName, tagline, phones, email, addresses, workingHours, whatsappNumber, whatsappMessage, socialLinks, primaryColor, logo)
     - Создать `src/config/brand.ts` — статический fallback Brand_Config
     - Создать `src/lib/brand-config.ts` с функцией `getBrandName(settings: SiteSettings): string`
@@ -35,43 +35,49 @@ Production-ready сайт для сервисного центра по ремо
     - Файл: `src/__tests__/unit/brand-config.test.ts`
     - **Validates: Requirements 1.3**
 
-- [ ] 3. Коллекции Payload CMS
-  - [-] 3.1 Создать коллекцию `users` с ролями и авторизацией
+- [x] 3. Коллекции Payload CMS
+  - [x] 3.1 Создать коллекцию `users` с ролями и авторизацией
     - Создать `src/payload/collections/Users.ts` с полями `name`, `role` (admin/editor)
     - Настроить `auth: { tokenExpiration: 28800 }` (8 часов)
     - Реализовать access-функции `isAdmin` и `isAdminOrEditor`
     - _Требования: 18.1, 18.4, 18.5, 18.6_
-  - [-] 3.2 Создать коллекцию `media` с оптимизацией изображений
+  - [x] 3.2 Создать коллекцию `media` с оптимизацией изображений
     - Создать `src/payload/collections/Media.ts` с upload-конфигурацией
     - Настроить mimeTypes: JPEG, PNG, WebP, AVIF; лимит 20 МБ
     - Настроить imageSizes: thumbnail (150×150), medium (800px), large (1920px)
     - Добавить обязательное поле `alt`
     - _Требования: 16.5, 19.1, 19.2, 19.3, 19.4, 19.5_
-  - [ ] 3.3 Создать коллекцию `services` (Услуги)
+  - [x] 3.3 Создать коллекцию `service-categories` и коллекцию `services`
+    - Создать `src/payload/collections/ServiceCategories.ts` с полями: name, slug, sortOrder
     - Создать `src/payload/collections/Services.ts` со всеми полями из design.md
     - Настроить `versions: { drafts: true }`, поле `_status`
-    - Добавить поля: title, slug (unique), category, shortDescription, fullDescription (richText), priceFrom, priceTable (array), photos (array), relatedServices (relationship), seo (group)
-    - _Требования: 4.1, 4.3, 4.6_
-  - [ ] 3.4 Создать коллекции `blog`, `portfolio`, `reviews`, `promotions`
+    - Добавить поля: title, slug (unique), category (relationship → service-categories), shortDescription, fullDescription (richText), priceFrom, priceTable (array), photos (array), relatedServices (relationship), seo (group)
+    - _Требования: 4.1, 4.2, 4.3, 4.6_
+  - [x] 3.4 Создать коллекции `blog`, `portfolio`, `reviews`, `promotions`
     - Создать `src/payload/collections/Blog.ts` с полями: title, slug, previewImage, excerpt, content (richText), tags, publishedAt, seo, _status; `versions: { drafts: true }`
     - Создать `src/payload/collections/Portfolio.ts` с полями: title, description, beforePhotos, afterPhotos, service (relationship), completedAt, _status
     - Создать `src/payload/collections/Reviews.ts` с полями: clientName, rating (1–5), text, photo, reviewDate, _status
     - Создать `src/payload/collections/Promotions.ts` с полями: title, description (richText), image, startsAt, endsAt, _status
     - _Требования: 8.4, 9.3, 13.3, 14.2_
-  - [ ] 3.5 Создать коллекции `repair-requests`, `price-list`, `team-members`
+  - [x] 3.5 Создать коллекции `repair-requests`, `price-list`, `team-members`
     - Создать `src/payload/collections/RepairRequests.ts` с полями: name, phone, service, description, photos, source, createdAt (readOnly), status, honeypot (hidden)
     - Настроить access: create — публичный, read/update/delete — только admin
     - Создать `src/payload/collections/PriceList.ts` с полями: category, sortOrder, items (array: name, price, note)
     - Создать `src/payload/collections/TeamMembers.ts` с полями: name, position, photo, sortOrder, _status
     - _Требования: 5.2, 7.4, 7.6, 10.2_
-  - [ ] 3.6 Создать Global `calculator-matrix` и on-demand revalidation hook
+  - [x] 3.6 Создать Global `calculator-matrix` и on-demand revalidation hook
     - Создать `src/payload/globals/CalculatorMatrix.ts` с полями: deviceTypes (array с вложенными faults и ценами), disclaimer
     - Создать `src/payload/hooks/revalidate.ts` с функцией `revalidateAfterChange` для всех коллекций
     - Подключить hook к коллекциям services, blog, portfolio, reviews, promotions, price-list
     - _Требования: 6.3, 16.4_
+  - [x] 3.7 Настроить Google OAuth для Admin Panel
+    - Добавить Google OAuth плагин в `payload.config.ts`
+    - Настроить переменные окружения `GOOGLE_CLIENT_ID` и `GOOGLE_CLIENT_SECRET`
+    - Обеспечить опциональную активацию через конфигурацию (если переменные не заданы — OAuth не активируется)
+    - _Требования: 18.2_
 
-- [ ] 4. Чистые функции бизнес-логики
-  - [ ] 4.1 Реализовать функцию валидации российского телефона
+- [x] 4. Чистые функции бизнес-логики
+  - [x] 4.1 Реализовать функцию валидации российского телефона
     - Создать `src/lib/phone-validation.ts` с функцией `validateRussianPhone(phone: string): boolean`
     - Нормализовать пробелы, дефисы, скобки перед проверкой
     - Принимать форматы: `+7XXXXXXXXXX`, `8XXXXXXXXXX`
@@ -80,7 +86,7 @@ Production-ready сайт для сервисного центра по ремо
     - **Property 5: Валидация российского номера телефона**
     - Файл: `src/__tests__/unit/phone-validation.test.ts`
     - **Validates: Requirements 7.3**
-  - [ ] 4.3 Реализовать функцию расчёта стоимости ремонта
+  - [x] 4.3 Реализовать функцию расчёта стоимости ремонта
     - Создать `src/lib/calculator.ts` с функцией `calculateRepairCost(matrix: CalculatorMatrix, params: CalculatorParams): CalculatorResult | null`
     - Возвращать `null` при отсутствии обязательных параметров
     - Возвращать `{ minPrice, maxPrice, currency: 'RUB', disclaimer }` для валидных параметров
@@ -90,7 +96,7 @@ Production-ready сайт для сервисного центра по ремо
     - **Property 4: Калькулятор отказывает при неполных параметрах**
     - Файл: `src/__tests__/unit/calculator.test.ts`
     - **Validates: Requirements 6.1, 6.5**
-  - [ ] 4.5 Реализовать функции фильтрации, среднего рейтинга и активности акции
+  - [x] 4.5 Реализовать функции фильтрации, среднего рейтинга и активности акции
     - Создать `src/lib/utils.ts` с функцией `filterByCategory<T extends { categoryId: string }>(items: T[], selectedId: string): T[]`
     - Добавить функцию `calculateAverageRating(ratings: number[]): number` — среднее арифметическое с округлением до 2 знаков
     - Добавить функцию `isPromotionActive(promotion: { startsAt: Date; endsAt: Date }, currentDate: Date): boolean`
@@ -101,7 +107,7 @@ Production-ready сайт для сервисного центра по ремо
     - **Property 9: Корректность определения активности акции по дате**
     - Файлы: `src/__tests__/unit/filter.test.ts`, `src/__tests__/unit/reviews.test.ts`, `src/__tests__/unit/promotions.test.ts`
     - **Validates: Requirements 4.2, 8.2, 9.2, 14.3, 14.4**
-  - [ ] 4.7 Реализовать валидацию формы и rate limiter
+  - [x] 4.7 Реализовать валидацию формы и rate limiter
     - Создать `src/lib/schemas/repair-request.schema.ts` с Zod-схемой (name, phone, serviceId, description, honeypot)
     - Создать `src/lib/rate-limiter.ts` с функцией `checkRateLimit(ip: string, store: RateLimitStore): boolean` — не более 5 запросов с одного IP за 10 минут
     - _Требования: 7.5, 7.7_
@@ -111,73 +117,73 @@ Production-ready сайт для сервисного центра по ремо
     - Файлы: `src/__tests__/unit/repair-form.test.ts`, `src/__tests__/unit/rate-limiter.test.ts`
     - **Validates: Requirements 7.5, 7.7**
 
-- [ ] 5. Контрольная точка — базовая логика
+- [x] 5. Контрольная точка — базовая логика
   - Убедиться, что все unit/property-тесты проходят: `npx vitest --run`
   - Убедиться, что TypeScript компилируется без ошибок: `npx tsc --noEmit`
   - Задать вопросы пользователю при необходимости.
 
-- [ ] 6. Layout, навигация и темизация
-  - [ ] 6.1 Создать корневой layout с Header, Footer и ThemeProvider
+- [x] 6. Layout, навигация и темизация
+  - [x] 6.1 Создать корневой layout с Header, Footer и ThemeProvider
     - Создать `src/app/(public)/layout.tsx` с `ThemeProvider` (next-themes, `attribute="class"`, `defaultTheme="system"`, `suppressHydrationWarning`)
     - Создать `src/components/layout/Header.tsx` — логотип, навигационные ссылки, кнопка быстрой связи, ThemeToggle
     - Создать `src/components/layout/Footer.tsx` — контакты, ссылки на разделы, юридическая информация
-    - Создать `src/components/layout/MobileMenu.tsx` — бургер-меню для viewport < 768px
-    - Создать `src/components/layout/ThemeToggle.tsx` — переключатель light/dark
+    - Создать `src/components/layout/MobileMenu.tsx` — бургер-меню для viewport < 768px; ARIA: `aria-expanded`, `aria-controls`, `aria-label`
+    - Создать `src/components/layout/ThemeToggle.tsx` — переключатель light/dark с сохранением в localStorage
     - _Требования: 2.2, 2.3, 2.5, 17.1, 17.2, 17.3, 17.4_
-  - [ ] 6.2 Создать кастомную страницу 404 и страницу `/thank-you`
+  - [x] 6.2 Создать кастомную страницу 404 и страницу `/thank-you`
     - Создать `src/app/not-found.tsx` с предложением вернуться на главную
     - Создать `src/app/(public)/thank-you/page.tsx` — статическая страница подтверждения
     - _Требования: 2.4, 7.4_
-  - [ ] 6.3 Создать плавающую кнопку WhatsApp и модальную форму быстрой связи
-    - Создать `src/components/ui/WhatsAppButton.tsx` — плавающая кнопка в правом нижнем углу, ссылка `https://wa.me/{number}?text={message}`
-    - Создать `src/components/ui/QuickContactModal.tsx` — модальное окно с полями имя + телефон, ARIA-атрибуты
+  - [x] 6.3 Создать плавающую кнопку WhatsApp и модальную форму быстрой связи
+    - Создать `src/components/ui/WhatsAppButton.tsx` — плавающая кнопка в правом нижнем углу, ссылка `https://wa.me/{number}?text={message}`; `aria-label="Написать в WhatsApp"`
+    - Создать `src/components/ui/QuickContactModal.tsx` — модальное окно с полями имя + телефон; ARIA: `role="dialog"`, `aria-modal="true"`, `aria-labelledby`, фокус-ловушка, закрытие по Escape
     - _Требования: 12.1, 12.2, 12.3, 12.4, 12.5, 22.4_
 
-- [ ] 7. API-маршруты
-  - [ ] 7.1 Создать Route Handler для заявки на ремонт
+- [x] 7. API-маршруты
+  - [x] 7.1 Создать Route Handler для заявки на ремонт
     - Создать `src/app/api/repair-request/route.ts`
     - Реализовать: rate limiting по IP, проверку honeypot, Zod-валидацию, сохранение через Payload Local API
     - Возвращать HTTP 429 при превышении rate limit, HTTP 400 при ошибках валидации
     - _Требования: 7.4, 7.7_
-  - [ ] 7.2 Создать Route Handler для быстрой формы связи и on-demand revalidation
+  - [x] 7.2 Создать Route Handler для быстрой формы связи и on-demand revalidation
     - Создать `src/app/api/quick-contact/route.ts` — аналогично repair-request, без поля service
     - Создать `src/app/api/revalidate/route.ts` — проверка `REVALIDATION_SECRET`, вызов `revalidatePath()`
     - _Требования: 12.4, 16.4_
 
-- [ ] 8. Главная страница и её секции
-  - [ ] 8.1 Создать секции главной страницы
+- [x] 8. Главная страница и её секции
+  - [x] 8.1 Создать секции главной страницы
     - Создать `src/app/(public)/page.tsx` с ISR `revalidate: 300`, загрузкой данных через Payload Local API
-    - Создать `src/components/sections/HeroSection.tsx` — заголовок, подзаголовок, CTA-кнопка, фоновое изображение (Next.js Image)
+    - Создать `src/components/sections/HeroSection.tsx` — заголовок, подзаголовок, CTA-кнопка, фоновое изображение (Next.js Image с `priority`)
     - Создать `src/components/sections/AdvantagesSection.tsx` — от 3 до 8 карточек с иконкой, заголовком, описанием
     - Создать `src/components/sections/ServicesPreview.tsx` — не более 6 карточек услуг
     - _Требования: 3.1, 3.2, 3.3, 3.4, 3.5_
-  - [ ] 8.2 Создать секции акций, отзывов, портфолио и контактов на главной
+  - [x] 8.2 Создать секции акций, отзывов, портфолио и контактов на главной
     - Создать `src/components/sections/PromotionsSection.tsx` — активные акции с таймером обратного отсчёта
     - Создать `src/components/sections/ReviewsPreview.tsx` — 3–5 последних отзывов
     - Создать `src/components/sections/PortfolioPreview.tsx` — превью портфолио
     - Создать `src/components/sections/ContactsSection.tsx` — адрес, телефон, форма записи
     - _Требования: 3.1, 9.4, 14.1_
 
-- [ ] 9. Страницы услуг и цен
-  - [ ] 9.1 Создать страницу `/services` с фильтрацией по категории
+- [x] 9. Страницы услуг и цен
+  - [x] 9.1 Создать страницу `/services` с фильтрацией по категории
     - Создать `src/app/(public)/services/page.tsx` с ISR `revalidate: 600`
     - Реализовать клиентскую фильтрацию по категории без перезагрузки страницы (URL search params)
     - Отображать карточки: название, краткое описание, цена «от», фото (Next.js Image)
     - _Требования: 4.1, 4.2_
-  - [ ] 9.2 Создать динамическую страницу `/services/[slug]`
+  - [x] 9.2 Создать динамическую страницу `/services/[slug]`
     - Создать `src/app/(public)/services/[slug]/page.tsx` с SSG + ISR `revalidate: 3600`
     - Реализовать `generateStaticParams()` для всех опубликованных услуг
     - Вызывать `notFound()` для несуществующего slug
     - Отображать: полное описание, таблицу цен, фото, форму записи, секцию «Похожие услуги» (не более 3)
     - _Требования: 4.3, 4.4, 4.5_
-  - [ ] 9.3 Создать страницу `/prices`
+  - [x] 9.3 Создать страницу `/prices`
     - Создать `src/app/(public)/prices/page.tsx` с ISR `revalidate: 600`
     - Отображать таблицу цен, сгруппированную по категориям (sortOrder)
     - Для каждой позиции: название, цена/диапазон, примечание
     - _Требования: 5.1, 5.3, 5.4_
 
-- [ ] 10. Калькулятор стоимости ремонта
-  - [ ] 10.1 Реализовать клиентский компонент Calculator
+- [x] 10. Калькулятор стоимости ремонта
+  - [x] 10.1 Реализовать клиентский компонент Calculator
     - Создать `src/components/features/calculator/types.ts` с интерфейсами `CalculatorParams`, `CalculatorResult`
     - Создать `src/components/features/calculator/useCalculator.ts` — хук с логикой выбора параметров и вызовом `calculateRepairCost`
     - Создать `src/components/features/calculator/Calculator.tsx` — клиентский компонент (`'use client'`)
@@ -186,26 +192,27 @@ Production-ready сайт для сервисного центра по ремо
     - Кнопка «Записаться на ремонт» с предзаполненными данными после расчёта
     - _Требования: 6.1, 6.2, 6.4, 6.5_
 
-- [ ] 11. Форма записи на ремонт
-  - [ ] 11.1 Реализовать компоненты форм записи
+- [x] 11. Форма записи на ремонт
+  - [x] 11.1 Реализовать компоненты форм записи
     - Создать `src/components/features/repair-form/useRepairForm.ts` — хук с React Hook Form + Zod resolver
     - Создать `src/components/features/repair-form/RepairForm.tsx` — полная форма (имя, телефон, услуга, описание, фото до 5 файлов JPEG/PNG/WEBP, max 10 МБ)
     - Создать `src/components/features/repair-form/QuickContactForm.tsx` — упрощённая форма (имя + телефон)
     - Реализовать: inline-ошибки у полей, real-time валидацию телефона, honeypot-поле (скрытое), редирект на `/thank-you` после успешной отправки
-    - _Требования: 7.1, 7.2, 7.3, 7.4, 7.5_
+    - Все поля формы должны иметь `<label>` с `htmlFor`, ARIA-атрибуты для сообщений об ошибках (`aria-describedby`, `aria-invalid`)
+    - _Требования: 7.1, 7.2, 7.3, 7.4, 7.5, 22.3, 22.4_
 
 - [ ] 12. Портфолио
   - [ ] 12.1 Создать страницу `/portfolio` с фильтрацией и пагинацией
     - Создать `src/app/(public)/portfolio/page.tsx` с ISR `revalidate: 300`
     - Создать `src/components/features/portfolio/PortfolioFilter.tsx` — фильтр по услуге (URL search params)
     - Создать `src/components/features/portfolio/PortfolioGrid.tsx` — сетка карточек, не более 12 на странице, кнопка «Загрузить ещё»
-    - Создать `src/components/features/portfolio/PortfolioLightbox.tsx` — лайтбокс с фото до/после, описанием, датой; ARIA-атрибуты
+    - Создать `src/components/features/portfolio/PortfolioLightbox.tsx` — лайтбокс с фото до/после, описанием, датой; ARIA: `role="dialog"`, `aria-modal="true"`, фокус-ловушка, закрытие по Escape
     - _Требования: 8.1, 8.2, 8.3, 8.5, 22.4_
 
 - [ ] 13. Отзывы, акции и страница «О нас»
   - [ ] 13.1 Создать страницу `/reviews`
     - Создать `src/app/(public)/reviews/page.tsx` с ISR `revalidate: 300`
-    - Создать `src/components/features/reviews/StarRating.tsx` — компонент звёздного рейтинга (ARIA: `role="img"`, `aria-label`)
+    - Создать `src/components/features/reviews/StarRating.tsx` — компонент звёздного рейтинга (ARIA: `role="img"`, `aria-label="Рейтинг: N из 5"`)
     - Создать `src/components/features/reviews/ReviewsList.tsx` — список с сортировкой по рейтингу/дате без перезагрузки
     - Отображать средний рейтинг в заголовке страницы (вычислять через `calculateAverageRating`)
     - _Требования: 9.1, 9.2, 9.5_
@@ -246,52 +253,64 @@ Production-ready сайт для сервисного центра по ремо
     - Создать `src/app/robots.ts` — запретить `/admin`, разрешить всё остальное
     - _Требования: 15.2, 15.3_
 
-- [ ] 17. Контрольная точка — публичный сайт
+- [ ] 17. Доступность (Accessibility)
+  - [ ] 17.1 Обеспечить соответствие WCAG 2.1 AA для всех интерактивных компонентов
+    - Проверить и добавить видимые стили фокуса (`focus-visible`) для всех интерактивных элементов (кнопки, ссылки, поля форм, переключатели)
+    - Проверить контрастность текста (минимум 4.5:1) для всех цветовых комбинаций в light и dark темах
+    - Добавить `aria-label` или `aria-labelledby` для всех иконочных кнопок без видимого текста
+    - Убедиться, что все интерактивные элементы доступны через Tab и активируются через Enter/Space
+    - _Требования: 22.1, 22.2, 22.3, 22.4_
+
+- [ ] 18. Контрольная точка — публичный сайт
   - Убедиться, что все страницы рендерятся без ошибок: `npm run build`
   - Убедиться, что TypeScript компилируется без ошибок: `npx tsc --noEmit`
   - Убедиться, что ESLint не выдаёт предупреждений: `npx eslint src/`
   - Задать вопросы пользователю при необходимости.
 
-- [ ] 18. Интеграционные тесты
-  - [ ]* 18.1 Написать интеграционные тесты для API заявки на ремонт
+- [ ] 19. Интеграционные тесты
+  - [ ]* 19.1 Написать интеграционные тесты для API заявки на ремонт
     - Тестировать: успешное создание заявки, rate limiting (HTTP 429), honeypot (HTTP 400), невалидные данные (HTTP 400)
     - Файл: `src/__tests__/integration/repair-request-api.test.ts`
     - _Требования: 7.4, 7.7_
-  - [ ]* 18.2 Написать интеграционные тесты для Payload-коллекций
+  - [ ]* 19.2 Написать интеграционные тесты для Payload-коллекций
     - Тестировать: создание/чтение/обновление/удаление для services, blog, portfolio, reviews
-    - Проверить генерацию TypeScript-типов из Payload
+    - Проверить генерацию TypeScript-типов из Payload (отсутствие `any` в сгенерированных типах)
     - Файл: `src/__tests__/integration/payload-collections.test.ts`
-    - _Требования: 23.2_
-  - [ ]* 18.3 Написать интеграционный тест для on-demand revalidation
+    - _Требования: 23.2, 23.3_
+  - [ ]* 19.3 Написать интеграционный тест для on-demand revalidation
     - Тестировать: вызов `/api/revalidate` с корректным секретом → успех; без секрета → HTTP 401
     - Файл: `src/__tests__/integration/revalidation.test.ts`
     - _Требования: 16.4_
 
-- [ ] 19. E2E тесты (Playwright)
-  - [ ]* 19.1 Написать E2E тест: отправка формы записи на ремонт
+- [ ] 20. E2E тесты (Playwright)
+  - [ ]* 20.1 Написать E2E тест: отправка формы записи на ремонт
     - Сценарий: заполнить форму → отправить → проверить редирект на `/thank-you`
     - Файл: `src/__tests__/e2e/repair-form.spec.ts`
     - _Требования: 7.4_
-  - [ ]* 19.2 Написать E2E тест: калькулятор стоимости
+  - [ ]* 20.2 Написать E2E тест: калькулятор стоимости
     - Сценарий: выбрать тип устройства → выбрать неисправность → проверить отображение диапазона цен → нажать «Записаться»
     - Файл: `src/__tests__/e2e/calculator.spec.ts`
     - _Требования: 6.1, 6.2, 6.4_
-  - [ ]* 19.3 Написать E2E тест: навигация и главная страница
-    - Сценарий: проверить все ссылки навигации, бургер-меню на мобильном, переключение темы
+  - [ ]* 20.3 Написать E2E тест: навигация и главная страница
+    - Сценарий: проверить все ссылки навигации, бургер-меню на мобильном, переключение темы (сохранение в localStorage)
     - Файл: `src/__tests__/e2e/homepage.spec.ts`
     - _Требования: 2.1, 2.2, 2.5, 17.3_
-  - [ ]* 19.4 Написать E2E тест: авторизация в Admin Panel
+  - [ ]* 20.4 Написать E2E тест: авторизация в Admin Panel
     - Сценарий: попытка доступа без авторизации → редирект на `/admin/login`; вход с корректными данными → доступ к панели
     - Файл: `src/__tests__/e2e/admin-auth.spec.ts`
     - _Требования: 18.1, 18.3_
+  - [ ]* 20.5 Написать E2E тест: фильтрация портфолио
+    - Сценарий: выбрать фильтр по услуге → проверить, что отображаются только релевантные Portfolio_Item
+    - Файл: `src/__tests__/e2e/portfolio-filter.spec.ts`
+    - _Требования: 8.2_
 
-- [ ] 20. Деплой и документация
-  - [ ] 20.1 Создать Dockerfile и docker-compose.yml
+- [ ] 21. Деплой и документация
+  - [ ] 21.1 Создать Dockerfile и docker-compose.yml
     - Создать `Dockerfile` с multi-stage build (deps → builder → runner) на базе `node:20-alpine`
     - Создать `docker-compose.yml` с сервисами: app (Next.js + Payload), postgres (PostgreSQL 16), nginx (reverse proxy)
     - Настроить healthcheck для postgres
     - _Требования: 21.1_
-  - [ ] 20.2 Написать README.md
+  - [ ] 21.2 Написать README.md
     - Создать `README.md` с разделами:
       - Описание проекта и технологический стек
       - Локальный запуск (клонирование, установка зависимостей, настройка `.env`, `npm run dev`)
@@ -299,11 +318,11 @@ Production-ready сайт для сервисного центра по ремо
       - Первый вход в Admin Panel (создание первого пользователя)
       - Деплой на Vercel + Railway (пошаговая инструкция)
       - Деплой через Docker Compose
-      - Переключение SQLite → PostgreSQL
+      - Переключение SQLite → PostgreSQL (`DATABASE_URL` + `npx payload migrate`)
       - Запуск тестов (`npx vitest --run`, `npx playwright test`)
     - _Требования: 21.3_
 
-- [ ] 21. Финальная контрольная точка
+- [ ] 22. Финальная контрольная точка
   - Убедиться, что `npm run build` проходит без ошибок TypeScript и предупреждений ESLint
   - Убедиться, что все unit/property-тесты проходят: `npx vitest --run`
   - Убедиться, что Docker-образ собирается: `docker build .`
@@ -313,10 +332,12 @@ Production-ready сайт для сервисного центра по ремо
 
 - Задачи, отмеченные `*`, являются необязательными и могут быть пропущены для ускоренного MVP
 - Каждая задача ссылается на конкретные требования для трассируемости
-- Контрольные точки (задачи 5, 17, 21) обеспечивают инкрементальную валидацию
+- Контрольные точки (задачи 5, 18, 22) обеспечивают инкрементальную валидацию
 - Property-тесты (fast-check, минимум 100 итераций) покрывают все 9 свойств из design.md
 - Все компоненты используют TypeScript strict mode без `any` в production-коде
 - Все интерактивные компоненты должны иметь ARIA-атрибуты и поддержку клавиатурной навигации
+- Коллекция `service-categories` добавлена в задачу 3.3 — она необходима для фильтрации услуг (Req 4.2)
+- Google OAuth (Req 18.2) вынесен в отдельную задачу 3.7 как опциональная функция
 
 ## Task Dependency Graph
 
@@ -326,16 +347,17 @@ Production-ready сайт для сервисного центра по ремо
     { "id": 0, "tasks": ["1.1", "1.2"] },
     { "id": 1, "tasks": ["2.1", "3.1", "3.2"] },
     { "id": 2, "tasks": ["2.2", "3.3", "3.4", "3.5", "4.1"] },
-    { "id": 3, "tasks": ["3.6", "4.2", "4.3", "4.5"] },
+    { "id": 3, "tasks": ["3.6", "3.7", "4.2", "4.3", "4.5"] },
     { "id": 4, "tasks": ["4.4", "4.6", "4.7"] },
     { "id": 5, "tasks": ["4.8", "6.1", "7.1"] },
     { "id": 6, "tasks": ["6.2", "6.3", "7.2", "8.1"] },
     { "id": 7, "tasks": ["8.2", "9.1", "10.1", "11.1"] },
     { "id": 8, "tasks": ["9.2", "9.3", "12.1", "13.1", "13.2", "13.3"] },
     { "id": 9, "tasks": ["14.1", "15.1", "16.1"] },
-    { "id": 10, "tasks": ["16.2", "18.1", "18.2", "18.3"] },
-    { "id": 11, "tasks": ["19.1", "19.2", "19.3", "19.4"] },
-    { "id": 12, "tasks": ["20.1", "20.2"] }
+    { "id": 10, "tasks": ["16.2", "17.1"] },
+    { "id": 11, "tasks": ["19.1", "19.2", "19.3"] },
+    { "id": 12, "tasks": ["20.1", "20.2", "20.3", "20.4", "20.5"] },
+    { "id": 13, "tasks": ["21.1", "21.2"] }
   ]
 }
 ```

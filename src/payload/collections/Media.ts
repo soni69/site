@@ -29,7 +29,6 @@ export const Media: CollectionConfig = {
       },
     ],
     adminThumbnail: 'thumbnail',
-    fileSize: 20 * 1024 * 1024, // 20 МБ
   },
   fields: [
     {

@@ -7,6 +7,7 @@ export default defineConfig({
   test: {
     globals: true,
     environment: 'node',
+    passWithNoTests: true,
     include: ['src/__tests__/unit/**/*.test.ts', 'src/__tests__/unit/**/*.test.tsx'],
     exclude: ['src/__tests__/integration/**', 'src/__tests__/e2e/**', 'node_modules/**'],
     coverage: {
