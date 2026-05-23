@@ -1,0 +1,67 @@
+# Dependencies
+node_modules/
+.pnp
+.pnp.js
+
+# Next.js
+.next/
+out/
+build/
+
+# Production
+dist/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Payload CMS
+media/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/settings.json
+.idea/
+
+# TypeScript
+*.tsbuildinfo
+tsconfig.tsbuildinfo
+
+# Testing
+coverage/
+playwright-report/
+test-results/
+
+# Misc
+*.pem
+
+# Build logs
+build.log
+*.log
+
+# Database backups
+*.db.bak
+*.sqlite.bak
+
+# Kiro IDE specs (not needed on server)
+.kiro/
+
+# Auto-generated Payload import map
+src/app/(payload)/admin/importMap.js

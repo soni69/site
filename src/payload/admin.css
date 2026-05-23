@@ -1,0 +1,232 @@
+/* ─── Payload Admin Custom Theme ─────────────────────────────────────────── */
+
+:root {
+  /* Brand accent — синий */
+  --theme-elevation-0: #0f1117;
+  --theme-elevation-50: #161b27;
+  --theme-elevation-100: #1c2333;
+  --theme-elevation-150: #1e2640;
+  --theme-elevation-200: #232d4a;
+  --theme-elevation-250: #2a3655;
+  --theme-elevation-300: #2e3d60;
+  --theme-elevation-400: #3a4d78;
+  --theme-elevation-500: #4a5f8f;
+  --theme-elevation-600: #6b7fa8;
+  --theme-elevation-700: #8fa3c4;
+  --theme-elevation-800: #b8c8e0;
+  --theme-elevation-900: #dce6f5;
+  --theme-elevation-1000: #f0f5ff;
+
+  --theme-text: #e8edf8;
+  --theme-input-bg: #161b27;
+
+  --theme-success-50: #0d2b1a;
+  --theme-success-500: #22c55e;
+  --theme-error-50: #2b0d0d;
+  --theme-error-500: #ef4444;
+  --theme-warning-50: #2b1f0d;
+  --theme-warning-500: #f59e0b;
+
+  /* Accent */
+  --theme-color: #3b82f6;
+
+  /* Border radius */
+  --style-radius-s: 6px;
+  --style-radius-m: 10px;
+  --style-radius-l: 14px;
+
+  /* Font */
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+/* Import Inter font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* ─── Global overrides ───────────────────────────────────────────────────── */
+
+.payload-default body,
+body {
+  font-family: var(--font-body) !important;
+}
+
+/* Nav sidebar */
+@layer payload-default {
+  .nav {
+    background: linear-gradient(180deg, #0f1117 0%, #131929 100%) !important;
+    border-right: 1px solid #1e2640 !important;
+  }
+
+  .nav__header {
+    border-bottom: 1px solid #1e2640 !important;
+    padding: 20px 24px !important;
+  }
+
+  /* Nav links */
+  .nav-group__toggle,
+  .nav__link {
+    border-radius: var(--style-radius-s) !important;
+    transition: background 0.15s ease, color 0.15s ease !important;
+  }
+
+  .nav__link:hover,
+  .nav-group__toggle:hover {
+    background: rgba(59, 130, 246, 0.1) !important;
+    color: #93c5fd !important;
+  }
+
+  .nav__link.active,
+  .nav__link--active {
+    background: rgba(59, 130, 246, 0.15) !important;
+    color: #3b82f6 !important;
+    font-weight: 500 !important;
+  }
+
+  /* Cards on dashboard */
+  .card {
+    border-radius: var(--style-radius-m) !important;
+    border: 1px solid #1e2640 !important;
+    background: #161b27 !important;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease !important;
+  }
+
+  .card:hover,
+  .card--has-onclick:hover {
+    border-color: #3b82f6 !important;
+    box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.2), 0 4px 16px rgba(0, 0, 0, 0.3) !important;
+    background: #1c2333 !important;
+  }
+
+  /* Buttons */
+  .btn--style-primary {
+    background: #3b82f6 !important;
+    border-color: #3b82f6 !important;
+    border-radius: var(--style-radius-s) !important;
+    font-weight: 500 !important;
+    transition: background 0.15s ease, box-shadow 0.15s ease !important;
+  }
+
+  .btn--style-primary:hover {
+    background: #2563eb !important;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.25) !important;
+  }
+
+  .btn--style-secondary {
+    border-radius: var(--style-radius-s) !important;
+    border-color: #2a3655 !important;
+  }
+
+  .btn--style-secondary:hover {
+    border-color: #3b82f6 !important;
+    color: #3b82f6 !important;
+  }
+
+  /* Inputs */
+  .field-type input,
+  .field-type textarea,
+  .field-type select {
+    border-radius: var(--style-radius-s) !important;
+    border-color: #2a3655 !important;
+    background: #161b27 !important;
+    transition: border-color 0.15s ease, box-shadow 0.15s ease !important;
+  }
+
+  .field-type input:focus,
+  .field-type textarea:focus {
+    border-color: #3b82f6 !important;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15) !important;
+    outline: none !important;
+  }
+
+  /* Table */
+  .table {
+    border-radius: var(--style-radius-m) !important;
+    overflow: hidden !important;
+    border: 1px solid #1e2640 !important;
+  }
+
+  .table__header-wrap {
+    background: #161b27 !important;
+    border-bottom: 1px solid #1e2640 !important;
+  }
+
+  .row--odd {
+    background: #0f1117 !important;
+  }
+
+  .row--even {
+    background: #131929 !important;
+  }
+
+  .row:hover td {
+    background: rgba(59, 130, 246, 0.05) !important;
+  }
+
+  /* Document header */
+  .doc-header {
+    border-bottom: 1px solid #1e2640 !important;
+    background: #0f1117 !important;
+  }
+
+  /* Gutter / page wrapper */
+  .gutter--left,
+  .gutter--right {
+    background: #0f1117 !important;
+  }
+
+  /* Login page */
+  .template-minimal {
+    background: radial-gradient(ellipse at top, #131929 0%, #0f1117 60%) !important;
+  }
+
+  .template-minimal__wrap {
+    background: #161b27 !important;
+    border: 1px solid #1e2640 !important;
+    border-radius: var(--style-radius-l) !important;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5) !important;
+  }
+
+  /* Payload logo on login */
+  .graphic-logo svg path {
+    fill: #3b82f6 !important;
+  }
+
+  /* Breadcrumbs */
+  .step-nav {
+    background: transparent !important;
+  }
+
+  /* Pill / badge */
+  .pill {
+    border-radius: 20px !important;
+  }
+
+  .pill--style-success {
+    background: rgba(34, 197, 94, 0.15) !important;
+    color: #4ade80 !important;
+  }
+
+  .pill--style-error {
+    background: rgba(239, 68, 68, 0.15) !important;
+    color: #f87171 !important;
+  }
+
+  /* Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0f1117;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #2a3655;
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #3b82f6;
+  }
+}

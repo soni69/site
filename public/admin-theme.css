@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+body {
+  font-family: var(--font-body) !important;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: var(--theme-elevation-0); }
+::-webkit-scrollbar-thumb { background: var(--theme-elevation-250); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: var(--theme-color); }
+
+/* Nav */
+.nav { border-right: 1px solid var(--theme-elevation-100) !important; }
+.nav__link {
+  border-radius: 6px !important;
+  transition: background 0.15s, color 0.15s !important;
+}
+.nav__link:hover {
+  background: color-mix(in srgb, var(--theme-color) 10%, transparent) !important;
+}
+.nav__link.active {
+  background: color-mix(in srgb, var(--theme-color) 15%, transparent) !important;
+  font-weight: 500 !important;
+}
+
+/* Cards */
+.card {
+  border-radius: 10px !important;
+  transition: border-color 0.15s, box-shadow 0.15s !important;
+}
+.card--has-onclick:hover {
+  border-color: var(--theme-color) !important;
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--theme-color) 30%, transparent),
+              0 4px 16px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Buttons */
+.btn {
+  border-radius: 6px !important;
+  font-weight: 500 !important;
+  transition: background 0.15s, box-shadow 0.15s !important;
+}
+.btn--style-primary:hover {
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--theme-color) 30%, transparent) !important;
+}
+
+/* Inputs */
+.field-type input,
+.field-type textarea {
+  border-radius: 6px !important;
+  transition: border-color 0.15s, box-shadow 0.15s !important;
+}
+.field-type input:focus,
+.field-type textarea:focus {
+  border-color: var(--theme-color) !important;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--theme-color) 20%, transparent) !important;
+  outline: none !important;
+}
+
+/* Table */
+.table {
+  border-radius: 10px !important;
+  overflow: hidden !important;
+}
+
+/* Login */
+.template-minimal__wrap {
+  border-radius: 14px !important;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Pills */
+.pill { border-radius: 20px !important; }

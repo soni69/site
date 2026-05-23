@@ -1,0 +1,199 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+body {
+  font-family: var(--font-body) !important;
+}
+
+/* ─── Левое меню (сайдбар) ──────────────────────────────────────────────── */
+
+/* Увеличиваем ширину сайдбара */
+.template-default__nav,
+.nav {
+  min-width: 260px !important;
+  border-right: 1px solid var(--theme-elevation-100) !important;
+}
+
+/* Внутренние отступы */
+.nav__wrap {
+  padding: 16px 12px !important;
+}
+
+/* Заголовки групп — крупнее, заметнее */
+.nav-group__toggle,
+.nav__group-label {
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  color: var(--theme-elevation-600) !important;
+  padding: 12px 12px 8px !important;
+  margin-top: 8px !important;
+}
+
+.nav-group__toggle:first-child,
+.nav__group-label:first-child {
+  margin-top: 0 !important;
+}
+
+/* Пункты меню — крупнее, удобнее кликать */
+.nav__link {
+  display: flex !important;
+  align-items: center !important;
+  padding: 10px 14px !important;
+  margin: 2px 0 !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  border-radius: 8px !important;
+  color: var(--theme-elevation-800) !important;
+  transition: background 0.15s ease, color 0.15s ease, transform 0.1s ease !important;
+  text-decoration: none !important;
+}
+
+.nav__link:hover {
+  background: var(--theme-elevation-100) !important;
+  color: var(--theme-text) !important;
+  transform: translateX(2px) !important;
+}
+
+/* Активный пункт — заметная подсветка */
+.nav__link.active,
+.nav__link--active,
+.nav__link[aria-current='page'] {
+  background: color-mix(in srgb, var(--theme-color) 15%, transparent) !important;
+  color: var(--theme-color) !important;
+  font-weight: 600 !important;
+}
+
+.nav__link.active:hover,
+.nav__link--active:hover {
+  transform: none !important;
+  background: color-mix(in srgb, var(--theme-color) 20%, transparent) !important;
+}
+
+/* Иконка плюса для создания новых записей */
+.nav__link .icon--plus,
+.nav__link svg {
+  margin-right: 8px !important;
+  flex-shrink: 0 !important;
+  opacity: 0.7 !important;
+}
+
+/* Шапка сайдбара (логотип/название) */
+.nav__header {
+  padding: 20px 16px !important;
+  border-bottom: 1px solid var(--theme-elevation-100) !important;
+  margin-bottom: 8px !important;
+}
+
+/* Кнопка свернуть/развернуть */
+.nav-toggler {
+  border-radius: 8px !important;
+  transition: background 0.15s ease !important;
+}
+
+.nav-toggler:hover {
+  background: var(--theme-elevation-100) !important;
+}
+
+/* ─── Скроллбар ─────────────────────────────────────────────────────────── */
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--theme-elevation-200);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--theme-elevation-400);
+}
+
+/* ─── Основные элементы интерфейса ──────────────────────────────────────── */
+
+/* Карточки на дашборде */
+.card {
+  border-radius: 12px !important;
+  border: 1px solid var(--theme-elevation-100) !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, transform 0.1s ease !important;
+}
+
+.card--has-onclick:hover {
+  border-color: var(--theme-color) !important;
+  box-shadow: 0 0 0 1px color-mix(in srgb, var(--theme-color) 30%, transparent),
+              0 8px 24px rgba(0, 0, 0, 0.2) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Кнопки */
+.btn {
+  border-radius: 8px !important;
+  font-weight: 500 !important;
+  transition: background 0.15s ease, box-shadow 0.15s ease !important;
+}
+
+.btn--style-primary:hover {
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--theme-color) 30%, transparent) !important;
+}
+
+/* Поля ввода */
+.field-type input,
+.field-type textarea,
+.field-type select {
+  border-radius: 8px !important;
+  font-size: 14px !important;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease !important;
+}
+
+.field-type input:focus,
+.field-type textarea:focus {
+  border-color: var(--theme-color) !important;
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--theme-color) 20%, transparent) !important;
+  outline: none !important;
+}
+
+/* Таблицы */
+.table {
+  border-radius: 12px !important;
+  overflow: hidden !important;
+}
+
+.table th {
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.05em !important;
+}
+
+/* Страница входа */
+.template-minimal__wrap {
+  border-radius: 16px !important;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Pills / badges */
+.pill {
+  border-radius: 20px !important;
+  font-weight: 500 !important;
+}
+
+/* Подзаголовки и описания */
+.collection-list__sub-header,
+.dashboard__group h3,
+.dashboard__label {
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.03em !important;
+  color: var(--theme-elevation-700) !important;
+  margin-bottom: 12px !important;
+}
